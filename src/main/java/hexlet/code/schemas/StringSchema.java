@@ -1,38 +1,27 @@
 package hexlet.code.schemas;
 
-import lombok.Data;
+import java.util.function.Predicate;
 
-@Data
-public class StringSchema {
+public class StringSchema extends BaseSchema {
 
-    private static String state = "";
-    private static Object object;
-    private static StringSchema schema;
+    private static final StringSchema schema = new StringSchema();
 
-    public static boolean isValid(Object obj) {
-        if ("".equals(state)) {
-            return true;
-        } else if ("notNull".equals(state)) {
-            return (obj != null) && (!obj.equals(""));
-        } else if ("minLength".equals(state)) {
-            return obj.toString().length() >= (Integer) object;
-        }
-        return obj.toString().contains((CharSequence) object);
-    }
-
-    public static void required() {
-        state = "notNull";
-    }
-
-    public static StringSchema minLength(int count) {
-        state = "minLength";
-        object = count;
+    public StringSchema required() {
+        Predicate<String> notEmpty = str -> str != null && !str.isEmpty();
+        predicateList.add(notEmpty);
         return schema;
     }
 
-    public static StringSchema contains(String str) {
-        state = "contains";
-        object = str;
+    public StringSchema minLength(int count) {
+        Predicate<String> length = str -> str.length() >= count;
+        predicateList.add(length);
+        return schema;
+    }
+
+
+    public StringSchema contains(String str) {
+        Predicate<String> contain = s -> s.contains(str);
+        predicateList.add(contain);
         return schema;
     }
 }
