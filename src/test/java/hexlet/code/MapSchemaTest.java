@@ -16,13 +16,13 @@ public class MapSchemaTest {
     private MapSchema schema;
 
     @BeforeEach
-    public void init() {
+    public final void init() {
         Validator v = new Validator();
         schema = v.map();
     }
 
     @AfterEach
-    public void clear() {
+    public final void clear() {
         BaseSchema.getPredicateList().clear();
     }
 

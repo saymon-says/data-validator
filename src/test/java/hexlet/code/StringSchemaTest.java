@@ -10,16 +10,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringSchemaTest {
 
+    private static final int THREE = 3;
     private StringSchema schema;
 
     @BeforeEach
-    public void init() {
+    public final void init() {
         Validator v = new Validator();
         schema = v.string();
     }
 
     @AfterEach
-    public void clear() {
+    public final void clear() {
         BaseSchema.getPredicateList().clear();
     }
 
@@ -39,7 +40,7 @@ public class StringSchemaTest {
 
     @Test
     public void testMinLength() {
-        schema.minLength(3);
+        schema.minLength(THREE);
         assertThat(schema.isValid("Three")).isEqualTo(true);
         assertThat(schema.isValid("T")).isEqualTo(false);
     }
@@ -53,8 +54,8 @@ public class StringSchemaTest {
 
     @Test
     public void testMinlengthContains() {
-        schema.minLength(6).contains("hello");
-        assertThat(schema.isValid("hello")).isEqualTo(false);
+        schema.minLength(THREE).contains("hello");
+        assertThat(schema.isValid("he")).isEqualTo(false);
         assertThat(schema.isValid("hello!")).isEqualTo(true);
     }
 }
