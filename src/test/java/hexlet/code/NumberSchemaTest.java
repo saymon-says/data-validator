@@ -6,8 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NumberSchemaTest {
@@ -22,7 +20,7 @@ public class NumberSchemaTest {
 
     @AfterEach
     public void clear() {
-        BaseSchema.predicateList = new ArrayList<>();
+        BaseSchema.getPredicateList().clear();
     }
 
     @Test
@@ -48,7 +46,7 @@ public class NumberSchemaTest {
 
     @Test
     public void testRange() {
-        schema.range(2,6);
+        schema.range(2, 6);
         assertThat(schema.isValid(3)).isEqualTo(true);
         assertThat(schema.isValid(0)).isEqualTo(false);
         assertThat(schema.isValid(6)).isEqualTo(true);

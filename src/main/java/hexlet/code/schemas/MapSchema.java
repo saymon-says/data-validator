@@ -1,32 +1,31 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema {
 
-    private static final MapSchema schema = new MapSchema();
+    private static final MapSchema SCHEMA = new MapSchema();
 
-    public MapSchema required() {
+    public final MapSchema required() {
         Predicate<Map> hash = map -> map instanceof Map;
-        predicateList.add(hash);
-        return schema;
+        getPredicateList().add(hash);
+        return SCHEMA;
     }
 
-    public MapSchema sizeOf(int sizeMap) {
+    public final MapSchema sizeOf(int sizeMap) {
         Predicate<Map> size = map -> sizeMap == map.size();
-        predicateList.add(size);
-        return schema;
+        getPredicateList().add(size);
+        return SCHEMA;
     }
 
-    public MapSchema shape(Map<String, BaseSchema> mapMode) {
+    public final MapSchema shape(Map<String, BaseSchema> mapMode) {
         Predicate<Map> mode = map -> {
 
             return true;
         };
 
-        predicateList.add(mode);
-        return schema;
+        getPredicateList().add(mode);
+        return SCHEMA;
     }
 }

@@ -4,24 +4,24 @@ import java.util.function.Predicate;
 
 public class StringSchema extends BaseSchema {
 
-    private static final StringSchema schema = new StringSchema();
+    private static final StringSchema SCHEMA = new StringSchema();
 
-    public StringSchema required() {
+    public final StringSchema required() {
         Predicate<String> notEmpty = str -> str != null && !str.isEmpty();
-        predicateList.add(notEmpty);
-        return schema;
+        getPredicateList().add(notEmpty);
+        return SCHEMA;
     }
 
-    public StringSchema minLength(int count) {
+    public final StringSchema minLength(int count) {
         Predicate<String> length = str -> str.length() >= count;
-        predicateList.add(length);
-        return schema;
+        getPredicateList().add(length);
+        return SCHEMA;
     }
 
 
-    public StringSchema contains(String str) {
+    public final StringSchema contains(String str) {
         Predicate<String> contain = s -> s.contains(str);
-        predicateList.add(contain);
-        return schema;
+        getPredicateList().add(contain);
+        return SCHEMA;
     }
 }

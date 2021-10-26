@@ -6,16 +6,20 @@ import java.util.function.Predicate;
 
 public class BaseSchema {
 
-    public static List<Predicate> predicateList = new ArrayList<>();
+    private static final List<Predicate> PREDICATE_LIST = new ArrayList<>();
 
-    public boolean isValid(Object obj) {
-        if (!predicateList.isEmpty()) {
-            for (Predicate predicate : predicateList) {
+    public final boolean isValid(Object obj) {
+        if (!PREDICATE_LIST.isEmpty()) {
+            for (Predicate predicate : PREDICATE_LIST) {
                 if (!predicate.test(obj)) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+    public static List<Predicate> getPredicateList() {
+        return PREDICATE_LIST;
     }
 }

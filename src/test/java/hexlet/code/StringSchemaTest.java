@@ -5,9 +5,6 @@ import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
-
-import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,7 +20,7 @@ public class StringSchemaTest {
 
     @AfterEach
     public void clear() {
-        BaseSchema.predicateList = new ArrayList<>();
+        BaseSchema.getPredicateList().clear();
     }
 
     @Test

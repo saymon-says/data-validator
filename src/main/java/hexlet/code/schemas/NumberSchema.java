@@ -4,23 +4,23 @@ import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema {
 
-    private static final NumberSchema schema = new NumberSchema();
+    private static final NumberSchema SCHEMA = new NumberSchema();
 
-    public NumberSchema required() {
+    public final NumberSchema required() {
         Predicate<Integer> number = num -> num instanceof Integer;
-        predicateList.add(number);
-        return schema;
+        getPredicateList().add(number);
+        return SCHEMA;
     }
 
-    public NumberSchema positive() {
+    public final NumberSchema positive() {
         Predicate<Integer> notNegative = num -> num > 0;
-        predicateList.add(notNegative);
-        return schema;
+        getPredicateList().add(notNegative);
+        return SCHEMA;
     }
 
-    public NumberSchema range(int start, int end) {
+    public final NumberSchema range(int start, int end) {
         Predicate<Integer> between = num -> start <= num && num <= end;
-        predicateList.add(between);
-        return schema;
+        getPredicateList().add(between);
+        return SCHEMA;
     }
 }

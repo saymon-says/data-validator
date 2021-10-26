@@ -6,7 +6,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +23,7 @@ public class MapSchemaTest {
 
     @AfterEach
     public void clear() {
-        BaseSchema.predicateList = new ArrayList<>();
+        BaseSchema.getPredicateList().clear();
     }
 
     @Test
