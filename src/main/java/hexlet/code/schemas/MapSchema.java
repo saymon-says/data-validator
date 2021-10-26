@@ -22,8 +22,8 @@ public class MapSchema extends BaseSchema {
 
     public MapSchema shape(Map<String, BaseSchema> mapMode) {
         Predicate<Map> mode = map -> {
-            Set<String> key = map.keySet();
 
+            return true;
         };
 
         predicateList.add(mode);

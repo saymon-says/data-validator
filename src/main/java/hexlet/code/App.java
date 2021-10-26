@@ -2,7 +2,6 @@ package hexlet.code;
 
 import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
-import hexlet.code.schemas.NumberSchema;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +14,11 @@ public class App {
 
         Map<String, BaseSchema> shemas = new HashMap<>();
         shemas.put("name", v.string().required());
-        shemas.put("age", v.number().positive());
         schema.shape(shemas);
+
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Kolya");
+        schema.isValid(human1);
     }
 
 }
