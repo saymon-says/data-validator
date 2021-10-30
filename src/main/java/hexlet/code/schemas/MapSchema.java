@@ -21,9 +21,11 @@ public class MapSchema extends BaseSchema {
 
     public final MapSchema shape(Map<String, BaseSchema> mapMode) {
         Predicate<Map> mode = map -> {
+            for (Map.Entry<String, BaseSchema> hashMap : mapMode.entrySet()) {
+                hashMap.getValue().isValid(hashMap.getKey());
+            }
+        }
 
-            return true;
-        };
 
         getPredicateList().add(mode);
         return SCHEMA;

@@ -18,7 +18,6 @@ public class StringSchema extends BaseSchema {
         return SCHEMA;
     }
 
-
     public final StringSchema contains(String str) {
         Predicate<String> contain = s -> s.contains(str);
         getPredicateList().add(contain);
