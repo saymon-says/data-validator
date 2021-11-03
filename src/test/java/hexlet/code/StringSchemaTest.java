@@ -1,8 +1,6 @@
 package hexlet.code;
 
-import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.StringSchema;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,11 +16,6 @@ public class StringSchemaTest {
         Validator v = new Validator();
         schema = v.string();
     }
-
-//    @AfterEach
-//    public final void clear() {
-//        BaseSchema.getPredicateList().clear();
-//    }
 
     @Test
     public void test() {

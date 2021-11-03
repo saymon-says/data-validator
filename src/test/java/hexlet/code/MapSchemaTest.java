@@ -14,6 +14,7 @@ public class MapSchemaTest {
 
     private MapSchema schema;
     private Validator v;
+    private static final int THREE = 3;
 
     @BeforeEach
     public final void init() {
@@ -55,7 +56,7 @@ public class MapSchemaTest {
 
         Map<String, Object> human1 = new HashMap<>();
         human1.put("name", "Kolya");
-        human1.put("age", 12);
+        human1.put("age", THREE);
 
         Map<String, Object> human2 = new HashMap<>();
         human2.put("name", "Maya");
