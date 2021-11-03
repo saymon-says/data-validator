@@ -42,7 +42,7 @@ public class MapSchemaTest {
         Map<String, String> example = new HashMap<>();
         example.put("key", "value");
         example.put("key1", "value1");
-        schema.sizeOf(2);
+        schema.sizeof(2);
         assertThat(schema.isValid(example)).isEqualTo(true);
         assertThat(schema.isValid(new HashMap<>())).isEqualTo(false);
     }

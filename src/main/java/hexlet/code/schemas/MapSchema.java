@@ -11,7 +11,7 @@ public class MapSchema extends BaseSchema {
         return this;
     }
 
-    public final MapSchema sizeOf(int sizeMap) {
+    public final MapSchema sizeof(int sizeMap) {
         Predicate<Map> size = map -> sizeMap == map.size();
         getPredicateList().add(size);
         return this;
