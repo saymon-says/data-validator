@@ -18,7 +18,7 @@ public class StringSchema extends BaseSchema {
     public final StringSchema minLength(int count) {
         Predicate<Object> length = str -> {
             if (str instanceof String) {
-               return ((String) str).length() >= count;
+                return ((String) str).length() >= count;
             }
             return false;
         };
@@ -29,7 +29,7 @@ public class StringSchema extends BaseSchema {
     public final StringSchema contains(String str) {
         Predicate<Object> contain = s -> {
             if (s instanceof String) {
-               return ((String) s).contains(str);
+                return ((String) s).contains(str);
             }
             return false;
         };
