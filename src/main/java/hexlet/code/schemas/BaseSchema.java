@@ -6,11 +6,11 @@ import java.util.function.Predicate;
 
 public class BaseSchema {
 
-    private static final List<Predicate> PREDICATE_LIST = new ArrayList<>();
+    private final List<Predicate> predicateList = new ArrayList<>();
 
     public final boolean isValid(Object obj) {
-        if (!PREDICATE_LIST.isEmpty()) {
-            for (Predicate predicate : PREDICATE_LIST) {
+        if (!predicateList.isEmpty()) {
+            for (Predicate predicate : predicateList) {
                 if (!predicate.test(obj)) {
                     return false;
                 }
@@ -19,7 +19,7 @@ public class BaseSchema {
         return true;
     }
 
-    public static List<Predicate> getPredicateList() {
-        return PREDICATE_LIST;
+    public final List<Predicate> getPredicateList() {
+        return predicateList;
     }
 }

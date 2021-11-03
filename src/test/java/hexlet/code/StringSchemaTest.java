@@ -19,10 +19,10 @@ public class StringSchemaTest {
         schema = v.string();
     }
 
-    @AfterEach
-    public final void clear() {
-        BaseSchema.getPredicateList().clear();
-    }
+//    @AfterEach
+//    public final void clear() {
+//        BaseSchema.getPredicateList().clear();
+//    }
 
     @Test
     public void test() {

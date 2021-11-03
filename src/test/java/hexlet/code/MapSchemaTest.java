@@ -2,7 +2,6 @@ package hexlet.code;
 
 import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,16 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MapSchemaTest {
 
     private MapSchema schema;
+    private Validator v;
 
     @BeforeEach
     public final void init() {
-        Validator v = new Validator();
+        v = new Validator();
         schema = v.map();
-    }
-
-    @AfterEach
-    public final void clear() {
-        BaseSchema.getPredicateList().clear();
     }
 
     @Test
@@ -49,6 +44,30 @@ public class MapSchemaTest {
         schema.sizeOf(2);
         assertThat(schema.isValid(example)).isEqualTo(true);
         assertThat(schema.isValid(new HashMap<>())).isEqualTo(false);
+    }
+
+    @Test
+    public void testShape() {
+        Map<String, BaseSchema> shemas = new HashMap<>();
+        shemas.put("name", v.string().required());
+        shemas.put("age", v.number().positive());
+        schema.shape(shemas);
+
+        Map<String, Object> human1 = new HashMap<>();
+        human1.put("name", "Kolya");
+        human1.put("age", 12);
+
+        Map<String, Object> human2 = new HashMap<>();
+        human2.put("name", "Maya");
+        human2.put("age", null);
+
+        Map<String, Object> human3 = new HashMap<>();
+        human3.put("name", "");
+        human3.put("age", null);
+
+        assertThat(schema.isValid(human1)).isTrue();
+        assertThat(schema.isValid(human2)).isFalse();
+        assertThat(schema.isValid(human3)).isFalse();
     }
 
 }
