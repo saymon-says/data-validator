@@ -11,7 +11,7 @@ public class NumberSchema extends BaseSchema {
     }
 
     public final NumberSchema positive() {
-        Predicate<Integer> notNegative = num -> num != null && num > 0;
+        Predicate<Integer> notNegative = num -> num == null || num > 0;
         getPredicateList().add(notNegative);
         return this;
     }
