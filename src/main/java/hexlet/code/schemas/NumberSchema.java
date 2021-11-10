@@ -6,31 +6,19 @@ public class NumberSchema extends BaseSchema {
 
     public final NumberSchema required() {
         Predicate<Object> number = num -> num instanceof Integer;
-        getPredicateList().add(number);
+        getPredicateList(number);
         return this;
     }
 
     public final NumberSchema positive() {
-        Predicate<Object> notNegative = num -> {
-            if (num instanceof Integer) {
-                return (Integer) num > 0;
-            } else if (num == null) {
-                return true;
-            }
-            return false;
-        };
-        getPredicateList().add(notNegative);
+        Predicate<Object> notNegative = num -> num instanceof Integer && (((Integer) num > 0) || (num == null));
+        getPredicateList(notNegative);
         return this;
     }
 
     public final NumberSchema range(int start, int end) {
-        Predicate<Object> between = num -> {
-            if (num instanceof Integer) {
-                return start <= (Integer) num && (Integer) num <= end;
-            }
-            return false;
-        };
-        getPredicateList().add(between);
+        Predicate<Object> between = num -> num instanceof Integer && start <= (Integer) num && (Integer) num <= end;
+        getPredicateList(between);
         return this;
     }
 }

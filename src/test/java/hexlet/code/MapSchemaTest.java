@@ -24,17 +24,17 @@ public class MapSchemaTest {
 
     @Test
     public void test() {
-        assertThat(schema.isValid(null)).isEqualTo(true);
+        assertThat(schema.isValid(null)).isTrue();
     }
 
     @Test
     public void testRequired() {
         schema.required();
-        assertThat(schema.isValid(null)).isEqualTo(false);
-        assertThat(schema.isValid(new HashMap<>())).isEqualTo(true);
+        assertThat(schema.isValid(null)).isFalse();
+        assertThat(schema.isValid(new HashMap<>())).isTrue();
         Map<String, String> example = new HashMap<>();
         example.put("key", "value");
-        assertThat(schema.isValid(example)).isEqualTo(true);
+        assertThat(schema.isValid(example)).isTrue();
     }
 
     @Test
@@ -43,8 +43,8 @@ public class MapSchemaTest {
         example.put("key", "value");
         example.put("key1", "value1");
         schema.sizeof(2);
-        assertThat(schema.isValid(example)).isEqualTo(true);
-        assertThat(schema.isValid(new HashMap<>())).isEqualTo(false);
+        assertThat(schema.isValid(example)).isTrue();
+        assertThat(schema.isValid(new HashMap<>())).isFalse();
     }
 
     @Test

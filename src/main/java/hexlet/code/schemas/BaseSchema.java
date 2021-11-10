@@ -9,17 +9,16 @@ public class BaseSchema {
     private final List<Predicate> predicateList = new ArrayList<>();
 
     public final boolean isValid(Object obj) {
-        if (!predicateList.isEmpty()) {
-            for (Predicate predicate : predicateList) {
-                if (!predicate.test(obj)) {
-                    return false;
-                }
+        for (Predicate predicate : predicateList) {
+            if (!predicate.test(obj)) {
+                return false;
             }
         }
         return true;
     }
 
-    public final List<Predicate> getPredicateList() {
+    public final List<Predicate> getPredicateList(Predicate<Object> predicate) {
+        predicateList.add(predicate);
         return predicateList;
     }
 }

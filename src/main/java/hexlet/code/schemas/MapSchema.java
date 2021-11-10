@@ -7,18 +7,13 @@ public class MapSchema extends BaseSchema {
 
     public final MapSchema required() {
         Predicate<Object> hash = map -> map instanceof Map;
-        getPredicateList().add(hash);
+        getPredicateList(hash);
         return this;
     }
 
     public final MapSchema sizeof(int sizeMap) {
-        Predicate<Object> size = map -> {
-            if (map instanceof Map) {
-                return sizeMap == ((Map<?, ?>) map).size();
-            }
-            return false;
-        };
-        getPredicateList().add(size);
+        Predicate<Object> size = map -> map instanceof Map && sizeMap == ((Map<?, ?>) map).size();
+        getPredicateList(size);
         return this;
     }
 
@@ -36,7 +31,7 @@ public class MapSchema extends BaseSchema {
             return false;
         };
 
-        getPredicateList().add(mode);
+        getPredicateList(mode);
         return this;
     }
 }

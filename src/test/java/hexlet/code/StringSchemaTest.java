@@ -19,36 +19,36 @@ public class StringSchemaTest {
 
     @Test
     public void test() {
-        assertThat(schema.isValid(null)).isEqualTo(true);
-        assertThat(schema.isValid("null")).isEqualTo(true);
+        assertThat(schema.isValid(null)).isTrue();
+        assertThat(schema.isValid("null")).isTrue();
     }
 
     @Test
     public void testRequired() {
         schema.required();
-        assertThat(schema.isValid(null)).isEqualTo(false);
-        assertThat(schema.isValid("")).isEqualTo(false);
-        assertThat(schema.isValid("null")).isEqualTo(true);
+        assertThat(schema.isValid(null)).isFalse();
+        assertThat(schema.isValid("")).isFalse();
+        assertThat(schema.isValid("null")).isTrue();
     }
 
     @Test
     public void testMinLength() {
         schema.minLength(THREE);
-        assertThat(schema.isValid("Three")).isEqualTo(true);
-        assertThat(schema.isValid("T")).isEqualTo(false);
+        assertThat(schema.isValid("Three")).isTrue();
+        assertThat(schema.isValid("T")).isFalse();
     }
 
     @Test
     public void testContains() {
         schema.contains("hello");
-        assertThat(schema.isValid("Hello my neighbors!")).isEqualTo(false);
-        assertThat(schema.isValid("Hello, hello my neighbors!")).isEqualTo(true);
+        assertThat(schema.isValid("Hello my neighbors!")).isFalse();
+        assertThat(schema.isValid("Hello, hello my neighbors!")).isTrue();
     }
 
     @Test
     public void testMinlengthContains() {
         schema.minLength(THREE).contains("hello");
-        assertThat(schema.isValid("he")).isEqualTo(false);
-        assertThat(schema.isValid("hello!")).isEqualTo(true);
+        assertThat(schema.isValid("he")).isFalse();
+        assertThat(schema.isValid("hello!")).isTrue();
     }
 }
