@@ -13,7 +13,3 @@ lint:
 
 build:
 	gradlew clean build
-
-dist:
-	gradlew clean install
-	build\install\app\bin\app -f plain nested_json_1.json nested_json_2.json
